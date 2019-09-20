@@ -1,0 +1,8 @@
+1) Cosa devi fare per usare il modulo HTTP?
+  Per utilizzare il modulo HTTP bisogna importare nell'app.module il modulo HTTP @angular/common/http.
+  Aggiungere anche negli imports HttpClientModule.
+2)Prendendo in considerazione il componente Foo descrivi a cosa servono i seguenti attributi
+  a. data: serve per contenere la risposta alla nostra richiesta HTTP
+  b. loading: serve a contenere l'attesa alla connessione del server
+  c. o: è un observable e serve per notificare quando arriva la risposta del server
+3)
