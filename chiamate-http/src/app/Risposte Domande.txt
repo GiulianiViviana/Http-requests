@@ -1,8 +1,59 @@
 1) Cosa devi fare per usare il modulo HTTP?
   Per utilizzare il modulo HTTP bisogna importare nell'app.module il modulo HTTP @angular/common/http.
   Aggiungere anche negli imports HttpClientModule.
-2)Prendendo in considerazione il componente Foo descrivi a cosa servono i seguenti attributi
+
+2) Prendendo in considerazione il componente Foo descrivi a cosa servono i seguenti attributi
   a. data: serve per contenere la risposta alla nostra richiesta HTTP
   b. loading: serve a contenere l'attesa alla connessione del server
   c. o: è un observable e serve per notificare quando arriva la risposta del server
-3)
+
+3) Come si usa l’oggetto HttpClient ? Descrivi
+  Come si importa: scrivendo nelle import --> import { HttpClient } from '@angular/common/http';
+  Come viene passato al componente tramite la dependency injection: dicendo ad angular di passare il modulo Http
+  quando avviene la creazione  dell’istanza del nostro componente.
+  constructor(public http: HttpClient) {}
+
+4) Spiega la differenza tra queste due notazioni
+  constructor(public http: HttpClient) {}: QUi il costruttore crea automaticamente la variabile http.
+  // other instance variables here
+  http: HttpClient;
+  constructor(http: HttpClient) {
+    this.http = http;
+  }  : mentre qui la variabile viene creata manualmente e poi passata nel costruttore e associata alla variabile della classe
+      con il this.
+
+5) Come si ottiene un oggetto observable che riceverà i dati da una get http?
+  this.o = this.http.get('https://jsonplaceholder.typicode.com/posts/1');
+
+6) Come si “sottoscrive” un metodo che gestisca i dati ricevuti dall’oggetto observable descritto nella domanda precedente?
+
+7) Commenta ogni riga del metodo getData
+  getData = (d : Object) =>   il metodo getData ha una variabile d di tipo Object
+    {
+      this.data = new Object(d); la variabile di classe data viene associata ad un nuovo oggetto che in questo caso è d
+      this.loading = false; la variabile loading di classe viene messa a false
+    }
+
+8) Descrivi il funzionamento delle seguenti righe HTML
+  <button type="button" (click)="makeRequest()">Make Request</button>   viene creato un bottone che al click richiama il metodo makeRequest()
+  <div *ngIf="loading">loading...</div>   il div viene creato se loading diventa true grazie all' *ngIf
+  <pre>{{data | json}}</pre> visualizza il codice ritornato all’interno della variabile data
+
+
+9) Come si fa una post http? Cosa si riceve come risposta?
+makeCompactPost(): void {
+   this.loading = true;
+   this.http
+     .post('https://jsonplaceholder.typicode.com/posts',
+       JSON.stringify({
+         body: 'bar',
+         title: 'foo',
+         userId: 1
+       })
+     )
+     .subscribe(data => {
+       this.data = data;
+       this.loading = false;
+     });
+ }
+Riceviamo come risposta l'id in cui sono presenti nel file json le credenziali che abbiamo richiesto nel metodo.
