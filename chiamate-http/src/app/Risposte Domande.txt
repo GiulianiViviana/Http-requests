@@ -1,3 +1,4 @@
+ESERCIZIO 15.1
 1) Cosa devi fare per usare il modulo HTTP?
   Per utilizzare il modulo HTTP bisogna importare nell'app.module il modulo HTTP @angular/common/http.
   Aggiungere anche negli imports HttpClientModule.
@@ -57,3 +58,27 @@ makeCompactPost(): void {
      });
  }
 Riceviamo come risposta l'id in cui sono presenti nel file json le credenziali che abbiamo richiesto nel metodo.
+
+15.2
+1) A cosa serve la classe Foo?
+    La classe Foo serve per avere un modello dei dati che si vuole utilizzare in quella classe.
+
+2) Quale vantaggio pensi possa esserci nel creare un modello di dati prima di riceverli?
+    Perchè così non dobbiamo riscrivere tutte le volte i dati.
+
+3) Come si dichiara un Observable che riceve un tipo di dati specifico?
+    oFoo : Observable<Foo[]>;
+
+4) Come faccio a dire quale tipo di dato sto per ricevere da una richiesta http?
+    this.oFoo = this.http.get<Foo[]>('https://jsonplaceholder.typicode.com/posts');
+
+5) Per quale ragione fooData può essere di un tipo particolare di dati e non un generico Object?
+    Perchè è di tipo Foo, ovvero la classe che abbiamo istanziato inizialmente.
+
+6) Spiega il ciclo *ngFor che visualizza gli articoli.
+    <div *ngFor="let art of fooData">
+    Il ciclo *ngFor visualizza gli articoli che sono presenti nell'array fooData.
+    art.nome viene associato alla visualizzazione di quel dato specifico presente nell'array.
+
+7) A cosa servono le arrow Function?
+    Servono per scrivere la sintassi più concisa di una funzione.
