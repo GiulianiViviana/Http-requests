@@ -24,10 +24,15 @@ ESERCIZIO 15.1
       con il this.
 
 5) Come si ottiene un oggetto observable che riceverà i dati da una get http?
-  this.o = this.http.get('https://jsonplaceholder.typicode.com/posts/1');
+    this.o = this.http.get('https://jsonplaceholder.typicode.com/posts/1');
 
 6) Come si “sottoscrive” un metodo che gestisca i dati ricevuti dall’oggetto observable descritto nella domanda precedente?
-
+    makeRequest(): void {
+     console.log("here");
+     this.loading = true;
+     this.o = this.http.get('https://jsonplaceholder.typicode.com/posts/1');
+     this.o.subscribe(this.getData);
+   }
 7) Commenta ogni riga del metodo getData
   getData = (d : Object) =>   il metodo getData ha una variabile d di tipo Object
     {
